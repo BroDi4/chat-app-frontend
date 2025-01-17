@@ -5,6 +5,8 @@ import {
 	fetchBaseQuery,
 	FetchBaseQueryError,
 } from '@reduxjs/toolkit/query/react';
+import { logout, setAuth } from '../components/features/auth/authSlice';
+import { IUserDto } from '../components/features/auth/auth.type';
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: 'http://localhost:5000/api',
@@ -24,6 +26,17 @@ const baseQueryWithReauth: BaseQueryFn<
 	FetchBaseQueryError
 > = async (args, api, extraOptions) => {
 	let result = await baseQuery(args, api, extraOptions);
+	if (result.error?.status === 401) {
+		const refreshResult = await baseQuery('/user/refresh', api, extraOptions);
+
+		if (refreshResult.data) {
+			const data = refreshResult.data as IUserDto;
+			api.dispatch(setAuth(data));
+			result = await baseQuery(args, api, extraOptions);
+		} else {
+			api.dispatch(logout());
+		}
+	}
 	return result;
 };
 

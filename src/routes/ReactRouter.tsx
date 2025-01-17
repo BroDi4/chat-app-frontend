@@ -21,8 +21,8 @@ export function ReactRouter() {
 					</Route>
 
 					<Route element={<RedirectAuthUser />}>
-						<Route path={pageConfig.auth} element={<AuthLayout />}>
-							<Route index element={<Login />} />
+						<Route element={<AuthLayout />}>
+							<Route path={pageConfig.login} element={<Login />} />
 							<Route path={pageConfig.register} element={<Register />} />
 						</Route>
 					</Route>

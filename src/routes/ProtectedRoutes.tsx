@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router';
 import { pageConfig } from '../config/page.config';
-import { useAppSelector } from '../store/redux';
+import { useAppSelector } from '../hooks/redux';
 
 export function ProtectedRoutes() {
 	const user = useAppSelector(state => state.auth.user);

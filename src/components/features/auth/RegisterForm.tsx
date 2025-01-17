@@ -1,66 +1,88 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { MainHeading } from '../../UI/headings/MainHeading';
 import { FormInput } from '../../UI/inputs/FormInput';
-import { Button } from '../../UI/buttons/Button';
-import { LinkButton } from '../../UI/buttons/LinkButton';
-import { pageConfig } from '../../../config/page.config';
 import { IRegisterData } from './auth.type';
 import { useRegisterMutation } from './authApiSlice';
+import { authErrorHandler } from './auth.service';
+import { useAppDispatch } from '../../../hooks/redux';
+import { setAuth } from './authSlice';
+import { ConfirmButton } from './ConfirmButton';
+import { toast } from 'react-toastify';
 
 export function RegisterForm() {
-	const { register, handleSubmit } = useForm<IRegisterData>();
-	const [registerUser, { isLoading, error }] = useRegisterMutation();
+	const dispatch = useAppDispatch();
+
+	const {
+		register,
+		handleSubmit,
+		setError,
+		watch,
+		clearErrors,
+		reset,
+		trigger,
+		formState: { errors, isValid },
+	} = useForm<IRegisterData>({ mode: 'onTouched' });
+
+	const [registerUser, { isLoading }] = useRegisterMutation();
 
 	const onFormSubmit: SubmitHandler<IRegisterData> = async function (data) {
-		const { confirm, ...formData } = data;
 		try {
-			const userData = await registerUser(formData);
-			console.log(userData);
+			const { confirm, ...formData } = data;
+			const res = await registerUser(formData).unwrap();
+			clearErrors();
+			reset();
+			dispatch(setAuth(res));
+			toast.success('Вы успешно авторизовались!', { autoClose: 3000 });
 		} catch (err) {
-			console.log(error);
+			authErrorHandler<IRegisterData>(err, setError);
 		}
 	};
 
 	return (
 		<>
 			<form onSubmit={handleSubmit(onFormSubmit)} className='mb-3'>
-				<MainHeading
-					title='Register account'
-					size='md'
-					className='text-center mb-4'
-				/>
-				<div className='mb-4'>
+				<div className='mb-6'>
 					<FormInput
-						className='mb-2;'
-						label='Email'
-						placeholder='Enter your email'
-						{...register('email')}
+						className='mb-4'
+						label='Почта'
+						type='email'
+						placeholder='Введите почту'
+						{...register('email', { required: 'Введите почту' })}
+						error={errors.email?.message}
 					/>
 					<FormInput
-						className='mb-2;'
-						label='Name'
-						placeholder='Enter your public name'
-						{...register('uniqueName')}
+						className='mb-4'
+						label='Имя'
+						placeholder='Введите уникальное имя аккаунта'
+						{...register('uniqueName', { required: 'Введите имя' })}
+						error={errors.uniqueName?.message}
 					/>
 					<FormInput
-						className='mb-2;'
-						label='Password'
-						placeholder='Enter your password'
-						{...register('password')}
+						className='mb-4'
+						label='Пароль'
+						type='password'
+						placeholder='Введите пароль'
+						{...register('password', {
+							required: 'Введите пароль',
+							onChange: async () => await trigger('confirm'),
+						})}
+						error={errors.password?.message}
 					/>
 					<FormInput
-						className='mb-2;'
-						label='Confirm password'
-						placeholder='Confirm your password'
-						{...register('confirm')}
+						className='mb-4'
+						label='Подтвердите пароль'
+						type='password'
+						placeholder='Введите пароль'
+						{...register('confirm', {
+							required: 'Подтвердите пароль',
+							validate: v => v === watch('password') || 'Пароли не совпадают',
+						})}
+						error={errors.confirm?.message}
 					/>
 				</div>
-				<Button>{isLoading ? 'Loading' : 'Register'}</Button>
+				<ConfirmButton isLoading={isLoading} isValid={isValid}>
+					Зарегистрироваться
+				</ConfirmButton>
 			</form>
-			<div className='text-center text-sm'>
-				You have an account?{' '}
-				<LinkButton to={pageConfig.auth}>Try to log in</LinkButton>
-			</div>
 		</>
 	);
 }

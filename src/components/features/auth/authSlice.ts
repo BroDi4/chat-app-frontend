@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, Middleware, PayloadAction } from '@reduxjs/toolkit';
 import { IAuthState, IUserDto } from './auth.type';
+import { RootState } from '../../../store/store';
 
 const initialState: IAuthState = {
 	user: null,
@@ -21,6 +22,16 @@ const authSlice = createSlice({
 		},
 	},
 });
+
+export const authMiddleware: Middleware = store => next => action => {
+	const result = next(action);
+	if (authSlice.actions.setAuth.match(action)) {
+		const state = store.getState() as RootState;
+		const token = state.auth.token;
+		if (token) localStorage.setItem('token', token);
+	}
+	return result;
+};
 
 export const { setAuth, logout } = authSlice.actions;
 

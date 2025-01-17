@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router';
-import { useAppSelector } from '../store/redux';
+import { useAppSelector } from '../hooks/redux';
 import { pageConfig } from '../config/page.config';
 
 export function RedirectAuthUser() {

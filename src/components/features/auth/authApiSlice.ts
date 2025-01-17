@@ -10,14 +10,6 @@ export const authApiSlice = apiSlice.injectEndpoints({
 				method: 'POST',
 				body: { ...payload },
 			}),
-
-			async onQueryStarted(_, { dispatch, queryFulfilled }) {
-				try {
-					const { data } = await queryFulfilled;
-					window.localStorage.setItem('token', data.accessToken);
-					dispatch(setAuth(data));
-				} catch (err) {}
-			},
 		}),
 
 		login: builder.mutation<IUserDto, ILoginData>({
@@ -26,14 +18,6 @@ export const authApiSlice = apiSlice.injectEndpoints({
 				method: 'POST',
 				body: { ...payload },
 			}),
-
-			async onQueryStarted(_, { dispatch, queryFulfilled }) {
-				try {
-					const { data } = await queryFulfilled;
-					window.localStorage.setItem('token', data.accessToken);
-					dispatch(setAuth(data));
-				} catch (err) {}
-			},
 		}),
 
 		authUser: builder.query<IUser, null>({

@@ -1,45 +1,63 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { MainHeading } from '../../UI/headings/MainHeading';
 import { FormInput } from '../../UI/inputs/FormInput';
-import { Button } from '../../UI/buttons/Button';
-import { pageConfig } from '../../../config/page.config';
-import { LinkButton } from '../../UI/buttons/LinkButton';
 import { useLoginMutation } from './authApiSlice';
 import { ILoginData } from './auth.type';
+import { useAppDispatch } from '../../../hooks/redux';
+import { setAuth } from './authSlice';
+import { authErrorHandler } from './auth.service';
+import { ConfirmButton } from './ConfirmButton';
+import { toast } from 'react-toastify';
 
 export function LoginForm() {
-	const { register, handleSubmit } = useForm<ILoginData>();
+	const dispatch = useAppDispatch();
 
-	const [loginUser] = useLoginMutation();
+	const [loginUser, { isLoading }] = useLoginMutation();
+
+	const {
+		register,
+		handleSubmit,
+		setError,
+		clearErrors,
+		reset,
+		formState: { errors, isValid },
+	} = useForm<ILoginData>({ mode: 'onTouched' });
 
 	const onFormSubmit: SubmitHandler<ILoginData> = async function (data) {
-		await loginUser(data);
+		try {
+			const res = await loginUser(data).unwrap();
+			clearErrors();
+			reset();
+			dispatch(setAuth(res));
+			toast.success('Вы успешно авторизовались!', { autoClose: 3000 });
+		} catch (err) {
+			authErrorHandler<ILoginData>(err, setError);
+		}
 	};
 
 	return (
 		<>
 			<form onSubmit={handleSubmit(onFormSubmit)} className='mb-3'>
-				<MainHeading title='Log in' size='md' className='text-center mb-4' />
-				<div className='mb-4'>
+				{/* <MainHeading title='Log in' size='md' className='text-center mb-4' /> */}
+				<div className='mb-6'>
 					<FormInput
-						className='mb-2'
-						label='Email'
-						placeholder='Enter your email'
-						{...register('email')}
+						className='mb-4'
+						label='Почта'
+						placeholder='Введите почту'
+						error={errors.email?.message}
+						{...register('email', { required: 'Введите почту' })}
 					/>
 					<FormInput
-						className='mb-2'
-						label='Password'
-						placeholder='Enter your password'
-						{...register('password')}
+						className='mb-4'
+						label='Пароль'
+						placeholder='Введите пароль'
+						error={errors.password?.message}
+						{...register('password', { required: 'Введите пароль' })}
 					/>
 				</div>
-				<Button>Log in</Button>
+				<ConfirmButton isLoading={isLoading} isValid={isValid}>
+					Войти
+				</ConfirmButton>
 			</form>
-			<div className='text-center text-sm'>
-				Don't have an account?{' '}
-				<LinkButton to={pageConfig.register}>Register</LinkButton>
-			</div>
 		</>
 	);
 }
