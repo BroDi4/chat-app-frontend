@@ -1,0 +1,7 @@
+.button {
+	@apply flex justify-center text-center bg-purple rounded-md py-1 px-5 w-full hover:bg-purpledark transition-colors duration-300 ease-in-out disabled:opacity-70 disabled:pointer-events-none;
+}
+
+.underlineButton {
+	@apply relative after:absolute after:top-[110%] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-tr after:from-blue after:to-purple hover:after:w-full after:transition-all after:duration-300 after:ease-in-out;
+}

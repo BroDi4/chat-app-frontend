@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router';
 import { pageConfig } from '../../../config/page.config';
+import { LinkButton } from '../../UI/buttons/LinkButton';
 
 interface Props {}
 
@@ -9,25 +9,12 @@ export function NavigateTab({}: Props) {
 		{ text: 'Регистрация', to: pageConfig.register },
 	];
 
-	const className = `w-1/2 inline-block text-center py-2 transition-all duration-300 from-blue to-purple bg-[position:_0%_0%] bg-[size:_200%] hover:bg-[position:_right]`;
-
-	const left = 'rounded-l-md';
-	const right = 'rounded-r-md';
-
 	return (
 		<div className='w-full flex mb-4 '>
-			{links.map((obj, i) => (
-				<NavLink
-					key={obj.to}
-					to={obj.to}
-					className={({ isActive }) =>
-						isActive
-							? `${i === 0 ? left : right} ${className} bg-gradient-to-r`
-							: className
-					}
-				>
+			{links.map(obj => (
+				<LinkButton type='navlink' to={obj.to}>
 					{obj.text}
-				</NavLink>
+				</LinkButton>
 			))}
 		</div>
 	);

@@ -5,5 +5,5 @@ import { useAppSelector } from '../hooks/redux';
 export function ProtectedRoutes() {
 	const user = useAppSelector(state => state.auth.user);
 
-	return user ? <Outlet /> : <Navigate to={pageConfig.auth} />;
+	return user ? <Outlet /> : <Navigate to={pageConfig.login} />;
 }
