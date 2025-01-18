@@ -23,8 +23,8 @@ export function LinkButton({ type, to, className = '', children }: Props) {
 					to={to}
 					className={({ isActive }) =>
 						isActive
-							? `${styles.button} ${className}`
-							: `${styles.button} !bg-transparent ${className}`
+							? `${className} ${styles.button}`
+							: `${className} ${styles.button} !bg-transparent`
 					}
 				>
 					{children}

@@ -1,5 +1,5 @@
 .button {
-	@apply flex justify-center text-center bg-purple rounded-md py-1 px-5 w-full hover:bg-purpledark transition-colors duration-300 ease-in-out disabled:opacity-70 disabled:pointer-events-none;
+	@apply flex justify-center text-center bg-purple rounded-md py-1 px-1  hover:bg-purpledark transition-colors duration-300 ease-in-out disabled:opacity-70 disabled:pointer-events-none;
 }
 
 .underlineButton {

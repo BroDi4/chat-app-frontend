@@ -10,9 +10,13 @@ export function NavigateTab({}: Props) {
 	];
 
 	return (
-		<div className='w-full flex mb-4 '>
+		<div className='w-full block sm:flex mb-4'>
 			{links.map(obj => (
-				<LinkButton type='navlink' to={obj.to}>
+				<LinkButton
+					type='navlink'
+					to={obj.to}
+					className='mb-2 sm:mb-0 w-full sm:w-1/2'
+				>
 					{obj.text}
 				</LinkButton>
 			))}

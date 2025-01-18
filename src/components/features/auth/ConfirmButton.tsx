@@ -9,7 +9,7 @@ interface Props extends PropsWithChildren {
 
 export function ConfirmButton({ isLoading, isValid, children }: Props) {
 	return (
-		<Button disabled={!isValid || isLoading}>
+		<Button disabled={!isValid || isLoading} className='w-full'>
 			{isLoading ? <SpinnerLoader size='sm' /> : children}
 		</Button>
 	);

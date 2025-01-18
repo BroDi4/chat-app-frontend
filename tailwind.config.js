@@ -8,7 +8,7 @@ export default {
 				grayalpha: 'rgba(36, 36, 36, 0.4)',
 				graylight: '#343434',
 				purple: '#9400D3',
-				purpledark: '#4B0082',
+				purpledark: '#6900b3',
 				blue: '#60a5fa',
 			},
 			gridTemplateColumns: {
