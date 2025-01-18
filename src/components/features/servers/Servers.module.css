@@ -1,0 +1,3 @@
+.serverItem {
+	@apply w-full h-10 rounded-full hover:rounded-xl mb-3 overflow-hidden;
+}
