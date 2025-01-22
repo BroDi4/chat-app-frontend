@@ -1,6 +1,6 @@
 import { NavLink, NavLinkProps } from 'react-router';
 
-import styles from './Servers.module.css';
+import styles from './ServerList.module.css';
 import clsx from 'clsx/lite';
 
 interface Props extends NavLinkProps {

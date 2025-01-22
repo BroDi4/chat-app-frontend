@@ -1,0 +1,3 @@
+.bgHover {
+	@apply transition-colors duration-200 ease-in rounded-md hover:bg-graylight p-1;
+}

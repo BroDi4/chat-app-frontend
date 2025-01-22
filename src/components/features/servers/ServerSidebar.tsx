@@ -1,4 +1,4 @@
-import { ServerList } from './ServerList';
+import { ServerList } from './ServerList/ServerList';
 
 export function ServerSidebar() {
 	return (

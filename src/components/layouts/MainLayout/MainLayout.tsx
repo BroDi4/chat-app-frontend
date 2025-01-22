@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
-import { ServerSidebar } from '../../features/servers/ServerSidebar';
-import { ProfileSidebar } from './ProfileSidebar';
+import { ServerSidebar } from '../../features/servers';
+import { ProfileSidebar } from '../../features/friends';
 
 export function MainLayout() {
 	return (

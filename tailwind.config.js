@@ -6,7 +6,8 @@ export default {
 			colors: {
 				gray: '#242424',
 				grayalpha: 'rgba(36, 36, 36, 0.4)',
-				graylight: '#343434',
+				graylight: '#3a3a3a',
+				grayultralight: '#abaaaa',
 				purple: '#9400D3',
 				purpledark: '#6900b3',
 				blue: '#60a5fa',

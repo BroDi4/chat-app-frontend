@@ -1,6 +1,6 @@
 import clsx from 'clsx/lite';
 
-import styles from './Servers.module.css';
+import styles from './ServerList.module.css';
 import { Plus } from 'lucide-react';
 
 interface Props {}

@@ -37,7 +37,6 @@ export function LoginForm() {
 	return (
 		<>
 			<form onSubmit={handleSubmit(onFormSubmit)} className='mb-3'>
-				{/* <MainHeading title='Log in' size='md' className='text-center mb-4' /> */}
 				<div className='mb-6'>
 					<FormInput
 						className='mb-4'
