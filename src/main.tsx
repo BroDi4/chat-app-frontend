@@ -2,13 +2,13 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { Providers } from './providers/Providers';
-import { ReactRouter } from './routes/ReactRouter';
+import { AppRouter } from './app/routers/AppRouter';
+import { Providers } from './app/providers/Providers';
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<Providers>
-			<ReactRouter />
+			<AppRouter />
 		</Providers>
 	</StrictMode>
 );
