@@ -27,3 +27,15 @@
 .Toastify__toast {
 	font-size: 16px;
 }
+
+.styled__scrollbar::-webkit-scrollbar {
+	@apply w-[3px] bg-transparent;
+}
+
+.styled__scrollbar::-webkit-scrollbar-thumb {
+	@apply rounded-full bg-grayultralight;
+}
+
+.unvisible__scrollbar::-webkit-scrollbar {
+	@apply hidden;
+}

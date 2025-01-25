@@ -15,7 +15,7 @@ const profile: IMessage = {
 
 export function Profile() {
 	return (
-		<div className='p-2 bg-gray flex'>
+		<div className='p-2 bg-gray flex '>
 			<button className={clsx('w-1/2 mr-2', styles.bgHover)}>
 				<UserCard {...profile} />
 			</button>

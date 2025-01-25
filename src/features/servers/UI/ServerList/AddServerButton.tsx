@@ -10,7 +10,7 @@ export function AddServerButton({}: Props) {
 		<button
 			className={clsx(
 				styles.serverItem,
-				'bg-graylight flex items-center justify-center group hover:bg-purple transition-colors duration-300 ease-in-out'
+				'bg-graylight flex items-center justify-center group hover:bg-purple transition-colors duration-300 ease-in-out flex-shrink-0'
 			)}
 		>
 			<Plus size={30} className='stroke-purple group-hover:stroke-white' />

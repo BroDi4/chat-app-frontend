@@ -2,8 +2,6 @@ import { TUserStatus } from '../../../../shared/Components/UserCard/Status/Statu
 import { HelperHeading } from '../../../../shared/UI/headings/HelperHeading/HelperHeading';
 import { MessageItem } from './MessageItem';
 
-interface Props {}
-
 export interface IMessage {
 	avatarUrl: string;
 	name: string;
@@ -38,17 +36,17 @@ const messages: IMessage[] = [
 	},
 ];
 
-export function MessageList({}: Props) {
+export function MessageList() {
 	return (
-		<div className='py-2 px-2'>
-			<div className=''>
+		<div className='px-2 flex flex-col h-full'>
+			<div className='flex-none'>
 				<HelperHeading
 					size='sm'
 					title='Личные сообщения'
 					className='mb-4 px-2'
 				/>
 			</div>
-			<ul className=''>
+			<ul className='overflow-y-auto flex-1 py-1 styled__scrollbar'>
 				{messages.map(obj => (
 					<MessageItem key={obj.name} {...obj} />
 				))}

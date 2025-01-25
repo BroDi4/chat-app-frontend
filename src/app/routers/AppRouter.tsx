@@ -4,11 +4,11 @@ import { ProtectedRoutes } from './ProtectedRoutes';
 import { RedirectAuthUser } from './RedirectAuthUser';
 import { CheckAuth } from './CheckAuth';
 import { pageConfig } from '../config/page.config';
-import { Home } from 'lucide-react';
 import { Login } from '../../pages/Login';
 import { Register } from '../../pages/Register';
 import { AuthLayout } from '../layouts/AuthLayout/AuthLayout';
 import { MainLayout } from '../layouts/MainLayout/MainLayout';
+import { Friends } from '../../pages/Friends';
 
 export function AppRouter() {
 	return (
@@ -17,7 +17,7 @@ export function AppRouter() {
 				<Route element={<CheckAuth />}>
 					<Route element={<ProtectedRoutes />}>
 						<Route path={pageConfig.home} element={<MainLayout />}>
-							<Route index element={<Home />} />
+							<Route index element={<Friends />} />
 						</Route>
 					</Route>
 
