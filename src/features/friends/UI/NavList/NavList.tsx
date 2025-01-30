@@ -3,7 +3,7 @@ import { NavButton } from './NavButton';
 
 export function NavList() {
 	return (
-		<div className='p-2'>
+		<div className='p-2 mb-2'>
 			<NavButton to='/' text='Друзья' Icon={Users}></NavButton>
 		</div>
 	);

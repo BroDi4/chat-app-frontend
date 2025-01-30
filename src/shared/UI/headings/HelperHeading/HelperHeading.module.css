@@ -1,3 +1,3 @@
 .title {
-	@apply tracking-widest text-grayultralight;
+	@apply text-grayultralight uppercase;
 }

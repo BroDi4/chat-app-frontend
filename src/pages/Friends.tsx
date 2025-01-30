@@ -1,5 +1,5 @@
-import { FriendsList } from '../features/friends';
+import { FriendsBlock } from '../features/friends';
 
 export function Friends() {
-	return <FriendsList />;
+	return <FriendsBlock />;
 }

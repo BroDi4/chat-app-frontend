@@ -2,9 +2,9 @@ import clsx from 'clsx/lite';
 
 interface Props {
 	title: string;
-	val: string;
-	filter: string;
-	setFilter: React.Dispatch<React.SetStateAction<string>>;
+	val: boolean;
+	filter: boolean;
+	setFilter: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function NavItem({ title, val, filter, setFilter }: Props) {

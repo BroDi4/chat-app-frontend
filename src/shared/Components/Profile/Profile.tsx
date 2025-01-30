@@ -1,24 +1,24 @@
 import clsx from 'clsx/lite';
-import { IMessage } from '../../../features/friends/UI/MessageList/MessageList';
 import { UserCard } from '../UserCard/UserCard';
 import { Headphones, Mic, Settings } from 'lucide-react';
 import { Link } from 'react-router';
 
 import styles from './Profile.module.css';
-
-const profile: IMessage = {
-	avatarUrl: '',
-	name: 'name4142144',
-	status: 'online',
-	to: '/',
-};
+import { useAppSelector } from '../../hooks/redux';
+import { UserCardLoader } from '../../UI/loaders/UserCardLoader';
 
 export function Profile() {
+	const user = useAppSelector(state => state.auth.user);
+
 	return (
 		<div className='p-2 bg-gray flex '>
-			<button className={clsx('w-1/2 mr-2', styles.bgHover)}>
-				<UserCard {...profile} />
-			</button>
+			{user ? (
+				<button className={clsx('w-1/2 mr-2', styles.bgHover)}>
+					<UserCard {...user} />
+				</button>
+			) : (
+				<UserCardLoader />
+			)}
 			<div className='flex items-center justify-between w-1/2'>
 				<button className={styles.bgHover}>
 					<Mic size={20} className='stroke-grayultralight' />

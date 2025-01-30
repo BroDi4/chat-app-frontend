@@ -1,4 +1,4 @@
-export interface ApiValidationError<T> {
+export interface IApiValidationError<T> {
 	type: string;
 	value: string;
 	msg: string;
@@ -6,7 +6,12 @@ export interface ApiValidationError<T> {
 	location: string;
 }
 
-export interface ApiErrorResponse<T> {
+export interface IFormErrorResponse<T> {
 	status: number;
-	data: { message: string; errors: ApiValidationError<T>[] };
+	data: { message: string; errors: IApiValidationError<T>[] };
+}
+
+export interface IApiResponse {
+	status: number;
+	data: { message: string };
 }

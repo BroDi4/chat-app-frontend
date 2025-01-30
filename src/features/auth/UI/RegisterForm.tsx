@@ -2,11 +2,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormInput } from '../../../shared/UI/inputs/FormInput';
 import { IRegisterData } from '../auth.type';
 import { useRegisterMutation } from '../authApiSlice';
-import { authErrorHandler } from '../auth.service';
 import { setAuth } from '../authSlice';
 import { ConfirmButton } from './ConfirmButton';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '../../../shared/hooks/redux';
+import { formErrorHandler } from '../../../shared/api/exceptions';
 
 export function RegisterForm() {
 	const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ export function RegisterForm() {
 			dispatch(setAuth(res));
 			toast.success('Вы успешно авторизовались!', { autoClose: 3000 });
 		} catch (err) {
-			authErrorHandler<IRegisterData>(err, setError);
+			formErrorHandler<IRegisterData>(err, setError);
 		}
 	};
 

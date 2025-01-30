@@ -1,13 +1,13 @@
 import { NavItem } from './NavItem';
 
 interface Props {
-	filter: string;
-	setFilter: React.Dispatch<React.SetStateAction<string>>;
+	filter: boolean;
+	setFilter: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const tabs = [
-	{ title: 'Все', val: 'all' },
-	{ title: 'В сети', val: 'online' },
+	{ title: 'Все', val: false },
+	{ title: 'В сети', val: true },
 ];
 
 export function FriendsNav({ filter, setFilter }: Props) {
@@ -15,7 +15,7 @@ export function FriendsNav({ filter, setFilter }: Props) {
 		<div className='flex items-center gap-4'>
 			{tabs.map(item => (
 				<NavItem
-					key={item.val}
+					key={item.title}
 					{...item}
 					filter={filter}
 					setFilter={setFilter}

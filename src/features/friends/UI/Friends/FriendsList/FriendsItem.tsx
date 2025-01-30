@@ -1,9 +1,10 @@
+import { MessageCircleMore } from 'lucide-react';
 import { NavLink } from 'react-router';
+
 import {
 	IUserCardProps,
 	UserCard,
-} from '../../../../shared/Components/UserCard/UserCard';
-import { MessageCircleMore } from 'lucide-react';
+} from '../../../../../shared/Components/UserCard/UserCard';
 
 interface Props extends IUserCardProps {
 	to: string;

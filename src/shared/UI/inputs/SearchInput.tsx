@@ -1,7 +1,10 @@
 import clsx from 'clsx';
 import { Search } from 'lucide-react';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+	value: string;
+	setValue: Dispatch<SetStateAction<string>>;
 	icon?: boolean;
 	placeholder?: string;
 	className?: string;
@@ -11,6 +14,8 @@ export function SearchInput({
 	icon = false,
 	placeholder,
 	className,
+	value,
+	setValue,
 	...props
 }: Props) {
 	return (
@@ -22,6 +27,8 @@ export function SearchInput({
 		>
 			<input
 				type='text'
+				value={value}
+				onChange={e => setValue(e.target.value)}
 				className='flex-1 bg-transparent outline-none text-xs text-grayultralight '
 				placeholder={placeholder}
 				{...props}

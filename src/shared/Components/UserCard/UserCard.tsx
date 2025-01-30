@@ -1,11 +1,14 @@
+import { IUser } from '../../../features/auth';
 import { IStatusProps, Status } from './Status/Status';
 
-export interface IUserCardProps extends IStatusProps {
-	avatarUrl: string;
-	name: string;
-}
+export interface IUserCardProps extends IStatusProps, IUser {}
 
-export function UserCard({ avatarUrl, name, status }: IUserCardProps) {
+export function UserCard({
+	avatarUrl,
+	status,
+	nickName,
+	uniqueName,
+}: IUserCardProps) {
 	return (
 		<div className='flex items-center group'>
 			<div className='relative w-7 h-7 bg-graylight mr-2 rounded-full flex-shrink-0'>
@@ -16,9 +19,11 @@ export function UserCard({ avatarUrl, name, status }: IUserCardProps) {
 				/>
 				<Status status={status} />
 			</div>
-			<span className='inline-block text-[16px] overflow-hidden  transition-colors duration-200 text-grayultralight group-hover:text-white'>
-				{name}
-			</span>
+
+			<div className='flex flex-col justify-center leading-[18px] overflow-hidden  transition-colors duration-200 text-grayultralight group-hover:text-white text-left'>
+				<span className='block text-[15px]'>{nickName}</span>
+				<span className='block text-[12px]'>{uniqueName}</span>
+			</div>
 		</div>
 	);
 }

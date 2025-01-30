@@ -3,10 +3,10 @@ import { FormInput } from '../../../shared/UI/inputs/FormInput';
 import { useLoginMutation } from '../authApiSlice';
 import { ILoginData } from '../auth.type';
 import { setAuth } from '../authSlice';
-import { authErrorHandler } from '../auth.service';
 import { ConfirmButton } from './ConfirmButton';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '../../../shared/hooks/redux';
+import { formErrorHandler } from '../../../shared/api/exceptions';
 
 export function LoginForm() {
 	const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ export function LoginForm() {
 			dispatch(setAuth(res));
 			toast.success('Вы успешно авторизовались!', { autoClose: 3000 });
 		} catch (err) {
-			authErrorHandler<ILoginData>(err, setError);
+			formErrorHandler<ILoginData>(err, setError);
 		}
 	};
 

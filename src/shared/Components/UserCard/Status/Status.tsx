@@ -1,7 +1,6 @@
-export type TUserStatus = 'online' | 'offline' | 'idle' | 'notdisturb';
-
 import clsx from 'clsx/lite';
 import styles from './Status.module.css';
+import { TUserStatus } from '../../../../features/auth';
 
 export interface IStatusProps {
 	status: TUserStatus;

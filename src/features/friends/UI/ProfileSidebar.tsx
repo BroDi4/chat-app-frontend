@@ -4,12 +4,12 @@ import { NavList } from './NavList/NavList';
 
 export function ProfileSidebar() {
 	return (
-		<div className='bg-grayalpha h-screen flex flex-col'>
+		<aside className='bg-grayalpha h-screen flex flex-col'>
 			<NavList />
 			<div className='flex-1 overflow-hidden'>
 				<MessageList />
 			</div>
 			<Profile />
-		</div>
+		</aside>
 	);
 }
