@@ -1,22 +1,20 @@
 import clsx from 'clsx/lite';
+import { NavLink } from 'react-router';
 
 interface Props {
 	title: string;
-	val: boolean;
-	filter: boolean;
-	setFilter: React.Dispatch<React.SetStateAction<boolean>>;
+	to: string;
 }
 
-export function NavItem({ title, val, filter, setFilter }: Props) {
+export function NavItem({ title, to }: Props) {
 	return (
-		<button
-			className={clsx(
-				'px-3 py-1 rounded-md',
-				val === filter && 'bg-purple text-white'
-			)}
-			onClick={() => setFilter(val)}
+		<NavLink
+			to={to}
+			className={({ isActive }) =>
+				clsx('px-3 py-1 rounded-md', isActive && 'bg-purple text-white')
+			}
 		>
 			{title}
-		</button>
+		</NavLink>
 	);
 }

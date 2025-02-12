@@ -1,25 +1,17 @@
+import { pageConfig } from '../../../../../app/config/page.config';
 import { NavItem } from './NavItem';
 
-interface Props {
-	filter: boolean;
-	setFilter: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 const tabs = [
-	{ title: 'Все', val: false },
-	{ title: 'В сети', val: true },
+	{ title: 'Все', to: pageConfig.home },
+	{ title: 'В сети', to: pageConfig.friendsOnline },
+	{ title: 'Ожидание', to: pageConfig.friendsRequests },
 ];
 
-export function FriendsNav({ filter, setFilter }: Props) {
+export function FriendsNav() {
 	return (
 		<div className='flex items-center gap-4'>
 			{tabs.map(item => (
-				<NavItem
-					key={item.title}
-					{...item}
-					filter={filter}
-					setFilter={setFilter}
-				/>
+				<NavItem key={item.title} {...item} />
 			))}
 		</div>
 	);

@@ -11,7 +11,11 @@ export interface IFormErrorResponse<T> {
 	data: { message: string; errors: IApiValidationError<T>[] };
 }
 
-export interface IApiResponse {
+export interface IApiErrorResponse {
 	status: number;
 	data: { message: string };
+}
+
+export interface IApiMessageResponse {
+	message: string;
 }

@@ -7,5 +7,5 @@ export interface IFriendRequest {
 	sentToId: number;
 	sentById: number;
 	id: number;
-	createdAt: Date;
+	createdAt: string;
 }

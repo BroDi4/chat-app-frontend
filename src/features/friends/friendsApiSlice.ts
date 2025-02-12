@@ -1,5 +1,6 @@
-import { IApiResponse } from '../../shared/api/api.types';
+import { IApiMessageResponse } from '../../shared/api/api.types';
 import { apiSlice } from '../../shared/api/apiSlice';
+import { transformDateInLocal } from '../../shared/api/helpers';
 import { IFriendRequest, TFriendsList } from './friends.types';
 
 export const friendsApiSlice = apiSlice.injectEndpoints({
@@ -14,7 +15,7 @@ export const friendsApiSlice = apiSlice.injectEndpoints({
 			}),
 		}),
 
-		deleteFriend: builder.mutation<IApiResponse, number>({
+		deleteFriend: builder.mutation<IApiMessageResponse, number>({
 			query: id => ({
 				url: `friend/delete/${id}`,
 				method: 'DELETE',
@@ -26,27 +27,38 @@ export const friendsApiSlice = apiSlice.injectEndpoints({
 				url: 'friend/requests',
 				method: 'GET',
 			}),
+			transformResponse: (response: IFriendRequest[]) => {
+				return response.map(obj => {
+					return {
+						...obj,
+						createdAt: transformDateInLocal(obj.createdAt),
+					};
+				});
+			},
+			providesTags: ['Requests'],
 		}),
 
-		sendRequest: builder.mutation<IApiResponse, number>({
-			query: userId => ({
-				url: `friend/sendreq/${userId}`,
+		sendRequest: builder.mutation<IApiMessageResponse, string>({
+			query: uniqueName => ({
+				url: `friend/sendreq/${uniqueName}`,
 				method: 'POST',
 			}),
 		}),
 
-		deleteRequest: builder.mutation<IApiResponse, number>({
+		deleteRequest: builder.mutation<IApiMessageResponse, number>({
 			query: requestId => ({
 				url: `friend/deletereq/${requestId}`,
 				method: 'DELETE',
 			}),
+			invalidatesTags: ['Requests'],
 		}),
 
-		acceptRequest: builder.mutation<IApiResponse, number>({
+		acceptRequest: builder.mutation<IApiMessageResponse, number>({
 			query: requestId => ({
 				url: `friend/acceptreq/${requestId}`,
 				method: 'POST',
 			}),
+			invalidatesTags: ['Requests'],
 		}),
 	}),
 });

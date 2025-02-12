@@ -8,7 +8,10 @@ import { Login } from '../../pages/Login';
 import { Register } from '../../pages/Register';
 import { AuthLayout } from '../layouts/AuthLayout/AuthLayout';
 import { MainLayout } from '../layouts/MainLayout/MainLayout';
-import { Friends } from '../../pages/Friends';
+import { FriendsLayout } from '../layouts/FriendsLayout/FriendsLayout';
+import { FriendsAll } from '../../pages/FriendsAll';
+import { FriendsOnline } from '../../pages/FriendsOnline';
+import { FriendsRequests } from '../../pages/FriendsRequests';
 
 export function AppRouter() {
 	return (
@@ -16,8 +19,18 @@ export function AppRouter() {
 			<Routes>
 				<Route element={<CheckAuth />}>
 					<Route element={<ProtectedRoutes />}>
-						<Route path={pageConfig.home} element={<MainLayout />}>
-							<Route index element={<Friends />} />
+						<Route element={<MainLayout />}>
+							<Route path={pageConfig.home} element={<FriendsLayout />}>
+								<Route index element={<FriendsAll />} />
+								<Route
+									path={pageConfig.friendsOnline}
+									element={<FriendsOnline />}
+								/>
+								<Route
+									path={pageConfig.friendsRequests}
+									element={<FriendsRequests />}
+								/>
+							</Route>
 						</Route>
 					</Route>
 

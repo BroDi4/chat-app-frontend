@@ -8,10 +8,17 @@ interface Props
 		PropsWithChildren {
 	className?: string;
 	size?: 'sm' | 'md' | 'lg' | 'full';
+	variant?: 'background' | 'transparent' | 'darkTransparent';
 }
 
-export function Button({ children, className, size = 'sm', ...props }: Props) {
-	const variants = {
+export function Button({
+	children,
+	className,
+	size = 'sm',
+	variant = 'background',
+	...props
+}: Props) {
+	const sizes = {
 		sm: 'px-1 py-1',
 		md: 'px-3 py-1',
 		lg: 'px-3 py-2',
@@ -20,7 +27,14 @@ export function Button({ children, className, size = 'sm', ...props }: Props) {
 
 	return (
 		<button
-			className={clsx(styles.button, className, variants[size])}
+			className={clsx(
+				styles.button,
+				className,
+				sizes[size],
+				variant === 'background' && styles.backgroundButton,
+				variant === 'transparent' && styles.transparentButton,
+				variant === 'darkTransparent' && styles.transparentButtonDark
+			)}
 			{...props}
 		>
 			{children}
