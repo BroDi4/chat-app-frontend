@@ -9,7 +9,7 @@ import { setAuth, logout } from '../../features/auth';
 import { IUserDto } from '../../features/auth/auth.type';
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: 'http://localhost:5000/api',
+	baseUrl: import.meta.env.VITE_API_URL + '/api',
 	credentials: 'include',
 	prepareHeaders: headers => {
 		const token = window.localStorage.getItem('token');

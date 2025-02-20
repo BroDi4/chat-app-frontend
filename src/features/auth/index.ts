@@ -1,7 +1,7 @@
 export { RegisterForm } from './UI/RegisterForm.tsx';
 export { LoginForm } from './UI/LoginForm.tsx';
 
-export { useAuthUserQuery } from './authApiSlice';
+export { useAuthUserQuery, useRefreshAuthMutation } from './authApiSlice';
 
 export { setAuth, logout } from './authSlice';
 

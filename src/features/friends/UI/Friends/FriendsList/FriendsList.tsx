@@ -17,8 +17,6 @@ interface Props {
 export function FriendsList({ list, search, setSearch, isLoading }: Props) {
 	if (isLoading) return <ContentLoader />;
 
-	if (!list || list.length === 0) return <EmptyData />;
-
 	return (
 		<div className='p-3 flex flex-col h-full'>
 			<SearchInput
@@ -29,13 +27,19 @@ export function FriendsList({ list, search, setSearch, isLoading }: Props) {
 				setValue={setSearch}
 			/>
 
-			<HelperHeading size='sm' title={`Друзья - ${list.length}`} />
+			{!list || list.length === 0 ? (
+				<EmptyData />
+			) : (
+				<>
+					<HelperHeading size='sm' title={`Друзья - ${list.length}`} />
 
-			<div className='mt-4 flex-1 overflow-y-auto'>
-				{list.map(obj => (
-					<FriendsItem key={obj.nickName} {...obj} to={'/'} />
-				))}
-			</div>
+					<div className='mt-4 flex-1 overflow-y-auto'>
+						{list.map(obj => (
+							<FriendsItem key={obj.nickName} {...obj} to={'/'} />
+						))}
+					</div>
+				</>
+			)}
 		</div>
 	);
 }

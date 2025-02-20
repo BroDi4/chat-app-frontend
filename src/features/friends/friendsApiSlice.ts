@@ -13,6 +13,7 @@ export const friendsApiSlice = apiSlice.injectEndpoints({
 				url: `friend/get/${status}?username=${username}`,
 				method: 'GET',
 			}),
+			providesTags: ['Friends'],
 		}),
 
 		deleteFriend: builder.mutation<IApiMessageResponse, number>({
@@ -20,6 +21,7 @@ export const friendsApiSlice = apiSlice.injectEndpoints({
 				url: `friend/delete/${id}`,
 				method: 'DELETE',
 			}),
+			invalidatesTags: ['Friends'],
 		}),
 
 		getRequests: builder.query<IFriendRequest[], null>({
@@ -58,7 +60,7 @@ export const friendsApiSlice = apiSlice.injectEndpoints({
 				url: `friend/acceptreq/${requestId}`,
 				method: 'POST',
 			}),
-			invalidatesTags: ['Requests'],
+			invalidatesTags: ['Requests', 'Friends'],
 		}),
 	}),
 });

@@ -35,8 +35,26 @@ export const authApiSlice = apiSlice.injectEndpoints({
 				} catch (err) {}
 			},
 		}),
+		refreshAuth: builder.mutation<IUserDto, null>({
+			query: () => ({
+				url: '/user/refresh',
+			}),
+
+			async onQueryStarted(_, { dispatch, queryFulfilled }) {
+				try {
+					const { data } = await queryFulfilled;
+					if (data) {
+						dispatch(setAuth({ ...data }));
+					}
+				} catch (err) {}
+			},
+		}),
 	}),
 });
 
-export const { useLoginMutation, useRegisterMutation, useAuthUserQuery } =
-	authApiSlice;
+export const {
+	useLoginMutation,
+	useRegisterMutation,
+	useAuthUserQuery,
+	useRefreshAuthMutation,
+} = authApiSlice;
