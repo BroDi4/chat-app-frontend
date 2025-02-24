@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 
 import { ProtectedRoutes } from './ProtectedRoutes';
 import { RedirectAuthUser } from './RedirectAuthUser';
-import { CheckAuth } from './CheckAuth';
 import { pageConfig } from '../config/page.config';
 import { Login } from '../../pages/Login';
 import { Register } from '../../pages/Register';
@@ -17,28 +16,26 @@ export function AppRouter() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route element={<CheckAuth />}>
-					<Route element={<ProtectedRoutes />}>
-						<Route element={<MainLayout />}>
-							<Route path={pageConfig.home} element={<FriendsLayout />}>
-								<Route index element={<FriendsAll />} />
-								<Route
-									path={pageConfig.friendsOnline}
-									element={<FriendsOnline />}
-								/>
-								<Route
-									path={pageConfig.friendsRequests}
-									element={<FriendsRequests />}
-								/>
-							</Route>
+				<Route element={<ProtectedRoutes />}>
+					<Route element={<MainLayout />}>
+						<Route path={pageConfig.home} element={<FriendsLayout />}>
+							<Route index element={<FriendsAll />} />
+							<Route
+								path={pageConfig.friendsOnline}
+								element={<FriendsOnline />}
+							/>
+							<Route
+								path={pageConfig.friendsRequests}
+								element={<FriendsRequests />}
+							/>
 						</Route>
 					</Route>
+				</Route>
 
-					<Route element={<RedirectAuthUser />}>
-						<Route element={<AuthLayout />}>
-							<Route path={pageConfig.login} element={<Login />} />
-							<Route path={pageConfig.register} element={<Register />} />
-						</Route>
+				<Route element={<RedirectAuthUser />}>
+					<Route element={<AuthLayout />}>
+						<Route path={pageConfig.login} element={<Login />} />
+						<Route path={pageConfig.register} element={<Register />} />
 					</Route>
 				</Route>
 			</Routes>

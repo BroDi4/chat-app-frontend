@@ -6,4 +6,8 @@ export { useAuthUserQuery, useRefreshAuthMutation } from './authApiSlice';
 export { setAuth, logout } from './authSlice';
 
 export type { IUser, TUserStatus } from './auth.type.ts';
-export { authReducer, authMiddleware } from '../../features/auth/authSlice';
+export {
+	authReducer,
+	authMiddleware,
+	setOnline,
+} from '../../features/auth/authSlice';

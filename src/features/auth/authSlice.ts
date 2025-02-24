@@ -16,6 +16,10 @@ const authSlice = createSlice({
 			state.user = user;
 			state.token = accessToken;
 		},
+		setOnline: (state, action: PayloadAction<boolean>) => {
+			if (!state.user) return;
+			state.user.online = action.payload;
+		},
 		logout: state => {
 			state.user = null;
 			state.token = null;
@@ -33,6 +37,6 @@ export const authMiddleware: Middleware = store => next => action => {
 	return result;
 };
 
-export const { setAuth, logout } = authSlice.actions;
+export const { setAuth, setOnline, logout } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

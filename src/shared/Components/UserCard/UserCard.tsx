@@ -8,6 +8,7 @@ export function UserCard({
 	status,
 	nickName,
 	uniqueName,
+	online,
 }: IUserCardProps) {
 	return (
 		<div className='flex items-center group'>
@@ -17,10 +18,10 @@ export function UserCard({
 					alt=''
 					className='max-w-full h-full rounded-full'
 				/>
-				<Status status={status} />
+				{online ? <Status status={status} /> : <Status status={'offline'} />}
 			</div>
 
-			<div className='flex flex-col justify-center leading-[18px] overflow-hidden  transition-colors duration-200 text-grayultralight group-hover:text-white text-left'>
+			<div className='flex flex-col justify-center leading-[18px] overflow-hidden transition-colors duration-200 text-grayultralight group-hover:text-white text-left'>
 				<span className='block text-[15px]'>{nickName}</span>
 				<span className='block text-[12px]'>{uniqueName}</span>
 			</div>

@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import { socket } from '../api/socket';
-import { useRefreshAuthMutation } from '../../features/auth';
+import { setOnline, useRefreshAuthMutation } from '../../features/auth';
+import { useAppDispatch } from './redux';
 
 export function useSocket() {
 	const [refreshToken] = useRefreshAuthMutation();
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		socket.connect();
 
 		socket.on('connect', () => {
-			console.log(socket.connected);
+			dispatch(setOnline(true));
 		});
 
 		socket.on('connect_error', async err => {
@@ -19,6 +21,7 @@ export function useSocket() {
 				socket.connect();
 			}
 		});
+
 		return () => {
 			socket.off('connect');
 			socket.off('connect_error');

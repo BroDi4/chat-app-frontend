@@ -11,15 +11,16 @@ export function Profile() {
 	const user = useAppSelector(state => state.auth.user);
 
 	return (
-		<div className='p-2 bg-gray flex '>
+		<div className='p-2 bg-gray flex'>
 			{user ? (
-				<button className={clsx('w-1/2 mr-2', styles.bgHover)}>
+				<button className={clsx('flex-1 mr-2', styles.bgHover)}>
 					<UserCard {...user} />
 				</button>
 			) : (
 				<UserCardLoader />
 			)}
-			<div className='flex items-center justify-between w-1/2'>
+
+			<div className='flex items-center justify-between w-1/3'>
 				<button className={styles.bgHover}>
 					<Mic size={20} className='stroke-grayultralight' />
 				</button>

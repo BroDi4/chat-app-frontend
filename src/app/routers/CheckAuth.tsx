@@ -10,6 +10,7 @@ export function CheckAuth() {
 
 	useSocket();
 
+	//todo: add loading for socket
 	if (isLoading) {
 		return <FullScreenLoader />;
 	}

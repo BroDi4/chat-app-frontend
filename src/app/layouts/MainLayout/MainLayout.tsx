@@ -1,11 +1,9 @@
 import { Outlet } from 'react-router';
 import { ProfileSidebar } from '../../../features/friends';
-import { ServerSidebar } from '../../../features/servers';
 
 export function MainLayout() {
 	return (
-		<div className='grid grid-cols-[70px_250px_1fr]'>
-			<ServerSidebar />
+		<div className='grid grid-cols-[300px_1fr]'>
 			<ProfileSidebar />
 			<main className='h-screen'>
 				<Outlet />
