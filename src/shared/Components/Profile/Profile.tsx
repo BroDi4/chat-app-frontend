@@ -1,5 +1,5 @@
 import clsx from 'clsx/lite';
-import { UserCard } from '../UserCard/UserCard';
+import { UserCard } from '../NameCard/UserCard';
 import { Headphones, Mic, Settings } from 'lucide-react';
 import { Link } from 'react-router';
 
@@ -14,7 +14,7 @@ export function Profile() {
 		<div className='p-2 bg-gray flex'>
 			{user ? (
 				<button className={clsx('flex-1 mr-2', styles.bgHover)}>
-					<UserCard {...user} />
+					<UserCard {...user} withUniqueName />
 				</button>
 			) : (
 				<UserCardLoader />

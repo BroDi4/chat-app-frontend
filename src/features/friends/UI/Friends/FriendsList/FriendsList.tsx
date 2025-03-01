@@ -3,6 +3,7 @@ import { HelperHeading } from '../../../../../shared/UI/headings/HelperHeading/H
 import { TFriendsList } from '../../../friends.types';
 import { FriendsItem } from './FriendsItem';
 import { ContentLoader } from '../../../../../shared/UI/loaders/ContentLoader';
+import { pageConfig } from '../../../../../app/config/page.config';
 
 interface Props {
 	list: TFriendsList | undefined;
@@ -20,7 +21,11 @@ export function FriendsList({ list, isLoading }: Props) {
 
 			<div className='mt-4 flex-1 overflow-y-auto'>
 				{list.map(obj => (
-					<FriendsItem key={obj.nickName} {...obj} to={'/'} />
+					<FriendsItem
+						key={obj.nickName}
+						{...obj}
+						to={pageConfig.chat({ id: obj.id.toString() })}
+					/>
 				))}
 			</div>
 		</div>

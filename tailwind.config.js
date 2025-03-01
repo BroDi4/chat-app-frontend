@@ -5,7 +5,7 @@ export default {
 		extend: {
 			colors: {
 				gray: '#242424',
-				grayalpha: 'rgba(36, 36, 36, 0.4)',
+				grayalpha: '#2b2b2b',
 				graylight: '#3a3a3a',
 				grayultralight: '#abaaaa',
 				purple: '#9400D3',

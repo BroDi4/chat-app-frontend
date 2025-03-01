@@ -6,9 +6,11 @@ class PageConfig {
 	public readonly login = `${this.authBasePath}/login`;
 	public readonly register = `${this.authBasePath}/register`;
 
-	public readonly home = '/';
-	public readonly friendsOnline = `/online`;
-	public readonly friendsRequests = `/requests`;
+	public readonly friends = `/friends`;
+	public readonly friendsAll = this.friends;
+	public readonly friendsOnline = `${this.friends}/online`;
+	public readonly friendsRequests = `${this.friends}/requests`;
+
 	public readonly chat = (params: TParams) =>
 		this.createDynamicRoute(`/chat/:id`, {
 			...params,
@@ -18,7 +20,7 @@ class PageConfig {
 		let route = path;
 
 		for (const key in params) {
-			route = route.replace(`${key}`, params[key]);
+			route = route.replace(`:${key}`, params[key]);
 		}
 
 		return route;

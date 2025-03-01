@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { UserCard } from '../../../../../shared/Components/UserCard/UserCard';
+import { UserCard } from '../../../../../shared/Components/NameCard/UserCard';
 import { IFriendRequest } from '../../../friends.types';
 import { AcceptButton } from './AcceptButton';
 import { DeclineButton } from './DeclineButton';

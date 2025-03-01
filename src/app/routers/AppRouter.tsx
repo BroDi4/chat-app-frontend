@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 
 import { ProtectedRoutes } from './ProtectedRoutes';
 import { RedirectAuthUser } from './RedirectAuthUser';
@@ -11,6 +11,7 @@ import { FriendsLayout } from '../layouts/FriendsLayout/FriendsLayout';
 import { FriendsAll } from '../../pages/FriendsAll';
 import { FriendsOnline } from '../../pages/FriendsOnline';
 import { FriendsRequests } from '../../pages/FriendsRequests';
+import { Chat } from '../../pages/Chat';
 
 export function AppRouter() {
 	return (
@@ -18,7 +19,12 @@ export function AppRouter() {
 			<Routes>
 				<Route element={<ProtectedRoutes />}>
 					<Route element={<MainLayout />}>
-						<Route path={pageConfig.home} element={<FriendsLayout />}>
+						<Route
+							path='/'
+							element={<Navigate to={pageConfig.friends} replace />}
+						/>
+
+						<Route path={pageConfig.friends} element={<FriendsLayout />}>
 							<Route index element={<FriendsAll />} />
 							<Route
 								path={pageConfig.friendsOnline}
@@ -29,6 +35,7 @@ export function AppRouter() {
 								element={<FriendsRequests />}
 							/>
 						</Route>
+						<Route path={pageConfig.chat({})} element={<Chat />} />
 					</Route>
 				</Route>
 

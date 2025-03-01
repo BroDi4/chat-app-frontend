@@ -1,0 +1,15 @@
+.card {
+	@apply flex items-center;
+}
+
+.cardInner {
+	@apply flex flex-col justify-center leading-[18px] overflow-hidden  text-grayultralight text-left;
+}
+
+.textMd {
+	@apply block text-[15px];
+}
+
+.textSm {
+	@apply block text-[12px];
+}

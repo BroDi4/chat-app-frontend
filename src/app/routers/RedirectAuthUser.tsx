@@ -6,7 +6,7 @@ export function RedirectAuthUser() {
 	const user = useAppSelector(state => state.auth.user);
 
 	if (user) {
-		return <Navigate to={pageConfig.home} />;
+		return <Navigate to={pageConfig.friends} />;
 	}
 	return <Outlet />;
 }
