@@ -1,6 +1,6 @@
 import { apiSlice } from '../../shared/api/apiSlice';
 import { ILoginData, IRegisterDto, IUser, IUserDto } from './auth.type';
-import { setAuth } from './authSlice';
+import { logout, setAuth } from './authSlice';
 
 export const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
@@ -20,6 +20,21 @@ export const authApiSlice = apiSlice.injectEndpoints({
 			}),
 		}),
 
+		logout: builder.mutation<null, null>({
+			query: () => ({
+				url: '/user/logout',
+				method: 'GET',
+			}),
+			async onQueryStarted(_, { dispatch, queryFulfilled }) {
+				try {
+					const { data } = await queryFulfilled;
+					if (data) {
+						dispatch(logout());
+					}
+				} catch (err) {}
+			},
+		}),
+
 		authUser: builder.query<IUser, null>({
 			query: () => ({
 				url: '/user/userinfo',
@@ -35,6 +50,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 				} catch (err) {}
 			},
 		}),
+
 		refreshAuth: builder.mutation<IUserDto, null>({
 			query: () => ({
 				url: '/user/refresh',
@@ -57,4 +73,5 @@ export const {
 	useRegisterMutation,
 	useAuthUserQuery,
 	useRefreshAuthMutation,
+	useLogoutMutation,
 } = authApiSlice;

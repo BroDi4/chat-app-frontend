@@ -9,10 +9,10 @@ export function EmptyData({ className }: Props) {
 		<div
 			className={clsx(
 				'mt-4 flex-1 flex items-center justify-center text-3xl text-grayultralight',
-				className
+				className,
 			)}
 		>
-			Увы, но здесь ничего нет
+			Здесь ничего нет
 		</div>
 	);
 }

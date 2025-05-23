@@ -1,14 +1,15 @@
 import clsx from 'clsx/lite';
 import { UserCard } from '../NameCard/UserCard';
-import { Headphones, Mic, Settings } from 'lucide-react';
-import { Link } from 'react-router';
+import { DoorOpen, Headphones, Mic } from 'lucide-react';
 
 import styles from './Profile.module.css';
 import { useAppSelector } from '../../hooks/redux';
 import { UserCardLoader } from '../../UI/loaders/UserCardLoader';
+import { useLogoutMutation } from '../../../features/auth/authApiSlice';
 
 export function Profile() {
 	const user = useAppSelector(state => state.auth.user);
+	const [logout] = useLogoutMutation();
 
 	return (
 		<div className='p-2 bg-gray flex'>
@@ -27,9 +28,9 @@ export function Profile() {
 				<button className={styles.bgHover}>
 					<Headphones size={20} className='stroke-grayultralight' />
 				</button>
-				<Link to={'/'} className={styles.bgHover}>
-					<Settings size={20} className='stroke-grayultralight' />
-				</Link>
+				<button className={styles.bgHover} onClick={() => logout(null)}>
+					<DoorOpen size={20} className='stroke-grayultralight' />
+				</button>
 			</div>
 		</div>
 	);

@@ -22,3 +22,10 @@ export function isApiResponse(error: unknown): error is IApiErrorResponse {
 export function transformDateInLocal(date: string, local = 'RU') {
 	return new Date(date).toLocaleDateString(local);
 }
+
+export function formatDate(date: string) {
+	const d = new Date(date);
+	const formatedDate = d.toISOString().split('T')[0];
+	const formatedTime = d.toTimeString().split(' ')[0];
+	return `${formatedDate} ${formatedTime}`;
+}

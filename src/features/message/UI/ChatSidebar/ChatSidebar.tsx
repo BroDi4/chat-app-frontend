@@ -1,5 +1,5 @@
 import { Profile } from '../../../../shared/Components/Profile/Profile';
-import { ChatList } from '../ChatList/ChatList';
+import { ChatListBlock } from '../ChatList/ChatListBlock';
 import { NavList } from '../NavList/NavList';
 
 export function ChatSidebar() {
@@ -7,7 +7,7 @@ export function ChatSidebar() {
 		<aside className='bg-grayalpha h-screen flex flex-col'>
 			<NavList />
 			<div className='flex-1 overflow-hidden'>
-				<ChatList />
+				<ChatListBlock />
 			</div>
 			<Profile />
 		</aside>

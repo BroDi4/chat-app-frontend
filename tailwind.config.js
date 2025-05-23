@@ -8,7 +8,7 @@ export default {
 				grayalpha: '#2b2b2b',
 				graylight: '#3a3a3a',
 				grayultralight: '#abaaaa',
-				purple: '#9400D3',
+				purple: '#7B48C2',
 				purpledark: '#6900b3',
 				blue: '#60a5fa',
 			},
